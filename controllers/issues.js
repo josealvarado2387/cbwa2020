@@ -1,18 +1,16 @@
 const issues = require ( '../models/issues.js' )();
 module.exports = () => {
-    const getController = ( req , res ) => {
-        res . setHeader ( 'Content-Type' , 'application/json' );
-        return res.json ( issues.get ());
+    const getController = async ( req , res ) => {
+        res.json ( await issues.get ());
     }
-    const getById = ( req , res ) => {
-        res.setHeader ( 'Content-Type' , 'application/json' );
-        res.json ( issues.get ( req.params.id ));
+    const getById = async ( req , res ) => {
+        res.json ( await issues.get( parseInt ( req.params.id )));
     }
-    const postController = ( req , res ) => {
-        const name = req.body.name ;
-        const projects = req.body.projects ;
-        issues.add ( name , projects );
-        return res.end ( `POST: ${ name } ` );
+    const postController = async ( req , res ) => {
+        const name = req . body . name ;
+        const author = req . body . author ;
+        const result = await books . add ( name , author );
+        res.json ( result );
     }
     return {
         getController ,
