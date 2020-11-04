@@ -2,7 +2,7 @@ const express = require ( 'express' );
 const bodyParser = require ( 'body-parser' );
 
 const hostname = '0.0.0.0';
-const port = process.env.PORT || 3000 ;
+const port = process.env.PORT || 3000;
 
 const projectsController = require ( './controllers/projects' )();
 const issuesController = require ( './controllers/issues' )();
