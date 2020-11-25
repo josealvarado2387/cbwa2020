@@ -17,13 +17,28 @@ module.exports = () => {
     const get = async ( slug = null ) => {
         console.log ( " inside projects model" );
         if (!slug ) {
+            try{
             const projects = await db.get ( COLLECTION );
-            return projects ;
+            return {projectslist:projects};
+            }catch(ex){
+                return{error:ex} 
+            }
         }
         const projects = await db.get ( COLLECTION , { slug });
         return projects ;
     };
     const add = async ( name, slug, description ) => {
+        if (name != null, slug != null, description != null){
+            let projects;
+            try{
+                projects = await get(slug);
+            }catch(ex){
+                console.log(" Null ");
+                return{ex};
+            }
+            if(projects.length === 0){
+                
+            try{
         const projectsCount = await db.count ( COLLECTION );
         const results = await db.add ( COLLECTION , {
             id: projectsCount + 1 ,
@@ -31,9 +46,14 @@ module.exports = () => {
             slug: slug,
             description: description,
         });
-        return results.result;
-    };
-    
+        return results.result;}catch(ex){
+            console.log("error");
+            return{error: ex};
+            }
+            }
+        } 
+    }
+
     const aggregateWithIssues = async () => {
         const projects = await db.aggregate ( COLLECTION , LOOKUP_ISSUES_PIPELINE );
         return projects ;

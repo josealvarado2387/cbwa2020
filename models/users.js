@@ -23,6 +23,17 @@ module.exports = () => {
         return name;
     }
     const add = async ( name, email, usertype, key ) => {
+        if (name != null, email != null, usertype != null, key != null){
+            let users;
+            try{
+                users = await get(email);
+            }catch(ex){
+                console.log("Null");
+                return{ex};
+            }
+            if(users.length === 0){
+                
+            try{
         const nameCount = await db.count ( COLLECTION );
         const results = await db.add ( COLLECTION , {
             id: nameCount + 1 ,
@@ -33,6 +44,13 @@ module.exports = () => {
             
         });
         return results.results;
+    }catch(ex){
+        console.log("error");
+        return{error: ex};
+        }
+        }
+    } 
+
     }
     return {
         getByKey ,

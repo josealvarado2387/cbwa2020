@@ -11,7 +11,9 @@ const usersController = require ( "./controllers/users" )();
 const app = (module.exports = express ());
 
 // logging
+
 app.use (( req , res , next ) => {
+    return next()
     // Display log for requests
     console.log ( '[%s] %s -- %s' , new Date (), req.method , req.url );
     next ();
@@ -48,10 +50,11 @@ app.use ( async (req,res,next ) => {
             }
             next ();
         });
+
         app.use ( bodyParser.json ());
         app.get ( "/" , ( req , res ) => {
             res.json ({
-                hello: "José Luis Alvarado Carranza(2020092) - Cloud Based Web Application (HDIP2020)- Lecturer: David Albert"
+                hello: "José Luis Alvarado Carranza(2020092)  \nCloud Based Web Application (HDIP2020) \nLecturer: David Albert"
             });
         });
         // Get all books
