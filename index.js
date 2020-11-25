@@ -75,7 +75,7 @@ app.use ( async (req,res,next ) => {
         app.post ( "/projects", projectsController.postController );
         // An Author
         app.get ( "/projects/:slug" , projectsController.getBySlug );
-
+        app.get ( "/projects/:slug" , projectsController.getBydue_date );
         // Get all users
         app.get("/users", usersController.getController);
         // Add a author
