@@ -35,7 +35,7 @@ module.exports = () => {
         const name = req.body.name;
         const slug = req.body.slug;
         const description = req.body.description;
-        const due_date = req.body.due_date,
+        const due_date = req.body.due_date;
         const result = await projects.add ( name, slug, description, due_date );
         
         res.json ( result );
