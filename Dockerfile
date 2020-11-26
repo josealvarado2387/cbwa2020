@@ -1,6 +1,8 @@
-FROM node:9-slim
-WORKDIR /CA1
-COPY package.json /CA1
+FROM node:latest
+RUN mkdir -p /app/
+WORKDIR /app/
+COPY package.json /app/
 RUN npm install
-COPY . /CA1
-CMD ["npm","start"]
+COPY . /app
+EXPOSE 8080
+CMD [ "npm", "run", "start" ]
